@@ -5,13 +5,17 @@ import java.io.IOException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
+
 /**
  * Servlet implementation class StudentAttend
  */
+@WebServlet("/StudentAttend")
 public class StudentAttendServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -22,8 +26,8 @@ public class StudentAttendServlet extends HttpServlet {
 		request.setAttribute("message", "出欠情報を登録してください");
 
 		ServletContext context = getServletContext();
-		RequestDispatcher rd = context.getRequestDispatcher("/disp.jsp");
-		rd.forward(request, response);
+		RequestDispatcher dispatcher = context.getRequestDispatcher("/disp.jsp");
+		dispatcher.forward(request, response);
 	}
 
 	/**
