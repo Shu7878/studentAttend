@@ -1,6 +1,7 @@
 package studentAttendServlet;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -9,6 +10,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import studentService.AttendSearch;
 
 
 
@@ -25,8 +28,23 @@ public class StudentAttendServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setAttribute("message", "出欠情報を登録してください");
 
+		String jsp;
+		try{
+			AttendSearch search = new AttendSearch();
+			search.execute(request);
+			jsp = "/disp.jsp";
+		}catch(SQLException e){
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "JDBCのエラーです");
+			jsp = "/disp.jsp";
+		}catch(Exception e){
+			e.printStackTrace();
+			request.setAttribute("errorMessage", "エラーが発生しました");
+			jsp = "/disp.jsp";
+		}
+
 		ServletContext context = getServletContext();
-		RequestDispatcher dispatcher = context.getRequestDispatcher("/disp.jsp");
+		RequestDispatcher dispatcher = context.getRequestDispatcher(jsp);
 		dispatcher.forward(request, response);
 	}
 

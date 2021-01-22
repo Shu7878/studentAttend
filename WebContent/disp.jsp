@@ -11,5 +11,27 @@
 <body>
 	<h1>生徒　出席入力画面</h1>
 	<p><c:out value="${message}"/></p>
+	<p><c:out value="${errorMessage}"/></p>
+	<c:if test="${not empty requestScope.studentList }">
+		<h2>生徒一覧</h2>
+		<table border="1" summary="生徒一覧">
+			<tr>
+				<th>ID</th>
+				<th>クラス番号</th>
+				<th>出席番号</th>
+				<th>生徒氏名</th>
+				<th>出欠状況</th>
+			</tr>
+			<c:forEach var="attend" items="${requestScope.studentList }">
+				<tr>
+					<th><c:out value="${attend.student_id}"/></th>
+					<th><c:out value="${attend.student_classId}"/></th>
+					<th><c:out value="${attend.student_attendId}"/></th>
+					<th><c:out value="${attend.student_name}"/></th>
+					<th><c:out value="${attend.student_attend}"/></th>
+				</tr>
+			</c:forEach>
+		</table>
+	</c:if>
 </body>
 </html>
