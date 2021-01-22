@@ -48,6 +48,7 @@ public class StudentDao {
 				studentBean.setStudent_attendId(rs.getInt("student_attendId"));
 				studentBean.setStudent_name(rs.getString("student_name"));
 				studentBean.setStudent_attend(rs.getString("student_attend"));
+				studentData.add(studentBean);
 			}
 			rs.close();
 		}finally{
