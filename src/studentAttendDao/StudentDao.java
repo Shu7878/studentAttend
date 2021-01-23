@@ -56,4 +56,6 @@ public class StudentDao {
 		}
 		return studentData;
 	}
+
+	//指定させた
 }
