@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import studentService.AttendSearch;
+import studentService.ChangeAttend;
 
 
 
@@ -54,9 +55,14 @@ public class StudentAttendServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		String jsp;
+		String btn = request.getParameter("btn");
 
 		try{
-
+			if(btn != null && btn.equals("attendBtn")){
+				ChangeAttend change = new ChangeAttend();		//SQLExceptionの発生
+				change.execute(request);
+				jsp = "/disp.jsp";
+			}
 			jsp="/disp.jsp";
 		}catch(SQLException e){
 			e.printStackTrace();

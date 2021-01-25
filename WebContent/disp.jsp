@@ -32,6 +32,7 @@
 					<th><c:out value="${attend.student_name}"/></th>
 					<th><c:out value="${attend.student_attend}"/></th>
 					<th>
+						<input type="hidden" name="id" value="${attend.student_id}"/>
 						<select name="attend">
 							<option value="attend">出席</option>
 							<option value="notattend">欠席</option>
@@ -41,8 +42,10 @@
 				</tr>
 			</c:forEach>
 		</table>
-		<p><input type="hidden" name="btn" value="attendBtn"/></p>
-		<p><input type="submit" value="変更する"/></p>
+
+		<p>
+			<input type="hidden" name="btn" value="attendBtn"/>
+			<input type="submit" value="変更する"/></p>
 		</form>
 	</c:if>
 </body>
