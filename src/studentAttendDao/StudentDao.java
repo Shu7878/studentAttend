@@ -58,16 +58,17 @@ public class StudentDao {
 	}
 
 	//指定した情報をアップデート
-	public int changeStudentData(int changeNum) throws SQLException{
+	public int changeStudentData(String attend, int changeNum) throws SQLException{
 		int numRow= 0;
 		PreparedStatement pstatement = null;
 
 		try{
 			//SQLを変更するオブジェクトの作成
 			connection.setAutoCommit(false);
-			String sql = "UPDATE studentattend set student_attend where student_id=?";
+			String sql = "UPDATE studentattend set student_attend = ? where student_id=?";
 			pstatement = connection.prepareStatement(sql);
-			pstatement.setInt(1, changeNum);
+			pstatement.setString(1, attend);
+			pstatement.setInt(2, changeNum);
 			numRow = pstatement.executeUpdate();
 		}finally{
 			if(numRow > 0){

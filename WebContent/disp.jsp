@@ -12,6 +12,7 @@
 	<h1>生徒　出席入力画面</h1>
 	<p><c:out value="${message}"/></p>
 	<p><c:out value="${errorMessage}"/></p>
+	<p><c:out value="${id}"/></p>
 	<c:if test="${not empty requestScope.studentList }">
 		<h2>生徒一覧</h2>
 		<form action="" method="post">
@@ -24,7 +25,7 @@
 				<th>出欠状況</th>
 				<th></th>
 			</tr>
-			<c:forEach var="attend" items="${requestScope.studentList }">
+			<c:forEach var="attend" items="${requestScope.studentList }" varStatus="i" begin="1">
 				<tr>
 					<th><c:out value="${attend.student_id}"/></th>
 					<th><c:out value="${attend.student_classId}"/></th>
@@ -32,7 +33,7 @@
 					<th><c:out value="${attend.student_name}"/></th>
 					<th><c:out value="${attend.student_attend}"/></th>
 					<th>
-						<input type="hidden" name="id" value="${attend.student_id}"/>
+						<input type="hidden" name="id" value="${i.index}"/>
 						<select name="attend">
 							<option value="attend">出席</option>
 							<option value="notattend">欠席</option>
@@ -48,5 +49,6 @@
 			<input type="submit" value="変更する"/></p>
 		</form>
 	</c:if>
+	<a href="StudentAttend">最初の画面に戻る</a>
 </body>
 </html>

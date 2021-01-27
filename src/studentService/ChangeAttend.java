@@ -10,13 +10,14 @@ public class ChangeAttend {
 		StudentDao dao = null;
 		String id = request.getParameter("id");
 		String attend = request.getParameter("attend");
+		request.setAttribute("id", id);
 		try{
 			if(id != null && !id.isEmpty()
 				&&	attend != null && !attend.isEmpty()){
 				StudentBean bean = new StudentBean();
-				bean.setStudent_attend(attend);
+				//bean.setStudent_attend(attend);
 				dao = new StudentDao();
-				int numRow = dao.changeStudentData(Integer.parseInt(id));
+				int numRow = dao.changeStudentData(attend, Integer.parseInt(id)); //ここでエラーが出ている
 				if(numRow > 0){
 					request.setAttribute("message", "出欠情報を登録できました。");
 				}else{
