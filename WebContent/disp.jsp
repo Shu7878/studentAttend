@@ -25,7 +25,7 @@
 				<th>出欠状況</th>
 				<th></th>
 			</tr>
-			<c:forEach var="attend" items="${requestScope.studentList }" varStatus="i" begin="1">
+			<c:forEach var="attend" items="${requestScope.studentList }" varStatus="i" begin="0">
 				<tr>
 					<th><c:out value="${attend.student_id}"/></th>
 					<th><c:out value="${attend.student_classId}"/></th>
@@ -33,11 +33,11 @@
 					<th><c:out value="${attend.student_name}"/></th>
 					<th><c:out value="${attend.student_attend}"/></th>
 					<th>
-						<input type="hidden" name="id" value="${i.index}"/>
+						<input type="hidden" name="id" value="${i.index+1}"/>
 						<select name="attend">
-							<option value="attend">出席</option>
-							<option value="notattend">欠席</option>
-							<option value="other">その他</option>
+							<option value="〇">出席</option>
+							<option value="×">欠席</option>
+							<option value="不明">その他</option>
 						</select>
 					</th>
 				</tr>
