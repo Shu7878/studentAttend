@@ -2,7 +2,6 @@ package studentService;
 
 import javax.servlet.http.HttpServletRequest;
 
-import studentAttendBean.StudentBean;
 import studentAttendDao.StudentDao;
 
 public class ChangeAttend {
@@ -14,10 +13,10 @@ public class ChangeAttend {
 		try{
 			if(id != null && !id.isEmpty()
 				&&	attend != null && !attend.isEmpty()){
-				StudentBean bean = new StudentBean();
+				//StudentBean bean = new StudentBean();
 				//bean.setStudent_attend(attend);
 				dao = new StudentDao();
-				int numRow = dao.changeStudentData(attend, Integer.parseInt(id)); //ここでエラーが出ている
+				int numRow = dao.changeStudentData(attend, Integer.parseInt(id)); //ここのエラー、解決済み
 				if(numRow > 0){
 					request.setAttribute("message", "出欠情報を登録できました。");
 				}else{
