@@ -59,7 +59,7 @@ public class StudentAttendServlet extends HttpServlet {
 
 		try{
 			if(btn != null && btn.equals("attendBtn")){
-				ChangeAttend change = new ChangeAttend();		//SQLExceptionの発生
+				ChangeAttend change = new ChangeAttend();		//SQLExceptionの発生解決
 				change.execute(request);
 				jsp = "/disp.jsp";
 			}

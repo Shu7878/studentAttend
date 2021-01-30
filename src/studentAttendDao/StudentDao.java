@@ -65,11 +65,15 @@ public class StudentDao {
 		try{
 			//SQLを変更するオブジェクトの作成
 			connection.setAutoCommit(false);
+
 			String sql = "UPDATE studentattend set student_attend = ? where student_id=?";
 			pstatement = connection.prepareStatement(sql);
 			pstatement.setString(1, attend);
 			pstatement.setInt(2, changeNum);
 			numRow = pstatement.executeUpdate();
+
+			//※データの取得も同時に行いたい場合はここでgetStudentData()メソッドと同様にBeanを利用する
+
 		}finally{
 			if(numRow > 0){
 				connection.commit();
